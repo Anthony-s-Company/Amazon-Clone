@@ -7,10 +7,19 @@ import {
   MDBBtn,
   MDBNavbarNav,
   MDBIcon,
-  MDBInputGroup
+  MDBInputGroup,
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBRow,
+  MDBCol,
+  MDBCarousel,
+  MDBCarouselItem
 } from 'mdb-react-ui-kit';
 
-import Nav from 'react-bootstrap/Nav';
+import SubNav from './components/SubNav'
 
 export default function App() {
 
@@ -22,14 +31,10 @@ export default function App() {
             <MDBNavbarNav className='mr-auto mb-lg-0'>
 
               <MDBNavbarItem>
-                <MDBNavbarLink active aria-current='page' href='#'>
-                  Home
+                <MDBNavbarLink tag='strong' href='#'>
+                  Orders
                 </MDBNavbarLink>
-              </MDBNavbarItem>
-
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Link</MDBNavbarLink>
-              </MDBNavbarItem>              
+              </MDBNavbarItem>             
 
               <MDBInputGroup tag="form" className='ms-4 w-75 h-50'>
                 <input className='form-control' placeholder="Search..." aria-label="Search" type='Search' />
@@ -38,45 +43,144 @@ export default function App() {
                 </MDBBtn>
               </MDBInputGroup>
 
-              <MDBNavbarLink className="ms-auto w-auto h-auto" href='#'>
-                <MDBIcon size='lg' fas icon='user' />
-              </MDBNavbarLink>
-
-              <MDBNavbarLink className="ms-auto me-4 w-auto h-auto" href='#'>
-                <MDBIcon size='lg' fas icon='shopping-cart' />
-              </MDBNavbarLink>
-
+              <MDBNavbarItem className="ms-auto w-auto h-auto">
+                <MDBNavbarLink href='#'>
+                  <MDBIcon size='lg' fas icon='user' />
+                </MDBNavbarLink>
+              </MDBNavbarItem>
+              
+              <MDBNavbarItem className="ms-auto me-4 w-auto h-auto">
+                <MDBNavbarLink className="" href='#'>
+                  <MDBIcon size='lg' fas icon='shopping-cart' />
+                </MDBNavbarLink>
+              </MDBNavbarItem>
+              
             </MDBNavbarNav>
         </MDBContainer>
       </MDBNavbar>
-      <MDBNavbar expand='md' light style={{ backgroundColor: '#D3D3D3' }}>
-        <MDBContainer fluid>
-            <MDBNavbarNav className='d-flex align-items-center justify-content-between'>
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Category 1</MDBNavbarLink>
-              </MDBNavbarItem>
+      <SubNav />
 
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Category 2</MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Category 3</MDBNavbarLink>
-              </MDBNavbarItem>
+      <MDBContainer className="mt-3">
+      <MDBRow className='row-cols-1 row-cols-md-4 g-4'>
+      <MDBCol>
+        <MDBCard className='h-100'>
+          <MDBCardImage
+            src='https://mdbootstrap.com/img/new/standard/city/041.webp'
+            alt='...'
+            position='top'
+          />
+          <MDBCardBody>
+            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardText>
+              This is a longer card with supporting text below as a natural lead-in to additional content.
+              This content is a little bit longer.
+            </MDBCardText>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+      <MDBCol>
+        <MDBCard className='h-100'>
+          <MDBCardImage
+            src='https://mdbootstrap.com/img/new/standard/city/042.webp'
+            alt='...'
+            position='top'
+          />
+          <MDBCardBody>
+            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardText>This is a short card.</MDBCardText>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+      <MDBCol>
+        <MDBCard className='h-100'>
+          <MDBCardImage
+            src='https://mdbootstrap.com/img/new/standard/city/043.webp'
+            alt='...'
+            position='top'
+          />
+          <MDBCardBody>
+            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardText>
+              This is a longer card with supporting text below as a natural lead-in to additional content.
+            </MDBCardText>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+      <MDBCol>
+        <MDBCard className='h-100'>
+          <MDBCardImage
+            src='https://mdbootstrap.com/img/new/standard/city/044.webp'
+            alt='...'
+            position='top'
+          />
+          <MDBCardBody>
+            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardText>
+              This is a longer card with supporting text below as a natural lead-in to additional content.
+              This content is a little bit longer.
+            </MDBCardText>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+    </MDBRow>
+    </MDBContainer>
 
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Category 4</MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Category 5</MDBNavbarLink>
-              </MDBNavbarItem>
+    <MDBContainer className="mt-3 mb-3 w-70">
+      <MDBRow className='row-cols-1 row-cols-md-2 g-4'>
+      <MDBCol>
+      <MDBCarousel className='h-25' showControls dealy={3000}>
+        <MDBCarouselItem
+          className='img-fluid shadow-4 rounded'
+          itemId={1}
+          src='https://mdbootstrap.com/img/new/slides/041.jpg'
+          alt='...'
+        />
+        <MDBCarouselItem
+          className='img-fluid shadow-4 rounded'
+          itemId={2}
+          src='https://mdbootstrap.com/img/new/slides/042.jpg'
+          alt='...'
+        />
+        <MDBCarouselItem
+          className='img-fluid shadow-4 rounded'
+          itemId={3}
+          src='https://mdbootstrap.com/img/new/slides/043.jpg'
+          alt='...'
+        />
+      </MDBCarousel>
+      </MDBCol>
+      <MDBCol>
+      <MDBCarousel className='h-25' showControls dealy={3000}>
+        <MDBCarouselItem
+          className='img-fluid shadow-4 rounded'
+          itemId={1}
+          src='https://mdbootstrap.com/img/new/slides/041.jpg'
+          alt='...'
+        />
+        <MDBCarouselItem
+          className='img-fluid shadow-4 rounded'
+          itemId={2}
+          src='https://mdbootstrap.com/img/new/slides/042.jpg'
+          alt='...'
+        />
+        <MDBCarouselItem
+          className='img-fluid shadow-4 rounded'
+          itemId={3}
+          src='https://mdbootstrap.com/img/new/slides/043.jpg'
+          alt='...'
+        />
+      </MDBCarousel>
+      </MDBCol>
+    </MDBRow>
+    </MDBContainer>
 
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Category 6</MDBNavbarLink>
-              </MDBNavbarItem>
+    <MDBContainer className="mt-3 mb-3 w-70">
 
-            </MDBNavbarNav>
-        </MDBContainer>
-      </MDBNavbar>
+      
+    </MDBContainer>
+
+
+      
     </>
   );
 }
