@@ -12,6 +12,8 @@ import {
   MDBBtnGroup
 } from 'mdb-react-ui-kit';
 
+import { Link } from "react-router-dom";
+
 export default function Card({item}) {
   return (
     <>
@@ -37,8 +39,14 @@ export default function Card({item}) {
 
               <MDBRow className='g-0'>
               <MDBBtnGroup aria-label='Basic example'>
-                <MDBBtn rounded  color='success' className='my-1 mx-2'>Details</MDBBtn>
-                <MDBBtn rounded className='my-1 mx-2'>Buy</MDBBtn>
+
+                <Link to={`/details/${item.id}`}>
+                  <MDBBtn  color='success' className='my-1 mx-2'>Details</MDBBtn>
+                </Link>
+                
+                <Link to={`/`}>
+                  <MDBBtn className='my-1 mx-2'>Buy</MDBBtn>
+                </Link>
               </MDBBtnGroup>
               </MDBRow>
             </MDBCard>

@@ -48,20 +48,15 @@ export const fetchElectronicProducts = async () => {
   }
 };
 
-// fetch("https://fakestoreapi.com/products")
-//   .then((res) => res.json())
-//   .then((json) => console.log(json));
-
-// export const fetchSinglePlayer = async (playerId) => {
-//   try {
-//     const response = await fetch(`${PLAYERS_APIURL}/${playerId}`);
-//     const singlePlayerData = await response.json();
-//     const player = singlePlayerData.data.player;
-//     return player;
-//   } catch (err) {
-//     console.error(`Oh no, trouble fetching player #${playerId}!`, err);
-//   }
-// };
+export const fetchSingleProduct = async (productId) => {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/products/${productId}`);
+    const singleProduct = await response.json();
+    return singleProduct;
+  } catch (err) {
+    console.error(`Oh no, trouble fetching player #${productId}!`, err);
+  }
+};
 
 // export const addNewPlayer = async (playerPayload) => {
 //   try {

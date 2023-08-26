@@ -1,3 +1,7 @@
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
 }
+
+.imgDetail {
+  border-radius: 10px;
+}
