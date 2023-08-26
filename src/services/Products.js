@@ -1,11 +1,24 @@
 // Get all products
 export const fetchAllProducts = async () => {
   try {
-    const response = await fetch("https://fakestoreapi.com/products?limit=12");
+    const response = await fetch("https://fakestoreapi.com/products");
     const products = await response.json();
     return products;
   } catch (err) {
     console.error("Uh oh, trouble fetching Products!", err);
+  }
+};
+
+// Get all limited
+export const fetchLimitedProducts = async (limite) => {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/products?limit=${limite}`
+    );
+    const products = await response.json();
+    return products;
+  } catch (err) {
+    console.error("Uh oh, trouble fetching Limited Products!", err);
   }
 };
 
@@ -50,42 +63,12 @@ export const fetchElectronicProducts = async () => {
 
 export const fetchSingleProduct = async (productId) => {
   try {
-    const response = await fetch(`https://fakestoreapi.com/products/${productId}`);
+    const response = await fetch(
+      `https://fakestoreapi.com/products/${productId}`
+    );
     const singleProduct = await response.json();
     return singleProduct;
   } catch (err) {
     console.error(`Oh no, trouble fetching player #${productId}!`, err);
   }
 };
-
-// export const addNewPlayer = async (playerPayload) => {
-//   try {
-//     const response = await fetch(PLAYERS_APIURL, {
-//       method: "POST",
-//       body: JSON.stringify(playerPayload),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     const responseData = await response.json();
-//     return responseData;
-//   } catch (err) {
-//     console.error("Oops, something went wrong with adding that player!", err);
-//   }
-// };
-
-// export const removePlayer = async (playerId) => {
-//   try {
-//     const response = await fetch(`${PLAYERS_APIURL}/${playerId}`, {
-//       method: "DELETE",
-//     });
-//     const deleteResponse = await response.json();
-//     return deleteResponse;
-//   } catch (err) {
-//     console.error(
-//       `Whoops, trouble removing player #${playerId} from the roster!`,
-//       err
-//     );
-//   }
-// };

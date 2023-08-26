@@ -1,0 +1,39 @@
+.home {
+  /* background: #EAEDED; */
+  background: #73AD21;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 0!important;
+}
+
+.home__row {
+  display: flex;
+  z-index: 10000;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 0!important;
+}
+
+
+@media screen and (max-width: 950px) {
+
+/* .row__container {
+  margin-top:-54px ;
+}
+ */
+}
+@media screen and (max-width: 650px) {
+.home__row {
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+/* .row__container {
+  margin-top:-31px ;
+} */
+
+}
+@media screen and (max-width: 560px) {
+
+}
