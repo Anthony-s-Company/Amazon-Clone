@@ -64,7 +64,8 @@ export default function Home() {
                   price={product.price}
                   image={product.image}
                   category={product.category}
-                
+                  rating={product.rating}
+                  description={product.description}
                 />)
               )
             }
@@ -81,7 +82,8 @@ export default function Home() {
                   price={product.price}
                   image={product.image}
                   category={product.category}
-                
+                  rating={product.rating}
+                  description={product.description}
                 />)
               )
             }
@@ -98,7 +100,8 @@ export default function Home() {
                   price={product.price}
                   image={product.image}
                   category={product.category}
-                
+                  rating={product.rating}
+                  description={product.description}
                 />)
               )
             }
@@ -115,7 +118,8 @@ export default function Home() {
                   price={product.price}
                   image={product.image}
                   category={product.category}
-                
+                  rating={product.rating}
+                  description={product.description}
                 />)
               )
             }

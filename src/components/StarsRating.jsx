@@ -1,18 +1,18 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
 
-export default function StarsRating() {
-  const [value, setValue] = React.useState(2);
-
+export default function StarsRating({rating}) {
+  // const [value, setValue] = React.useState(2);
+  
   return (
     <Box
       sx={{
         '& > legend': { mt: 2 },
       }}
     >
-      <Rating name="read-only" value={value} readOnly />
+    <Rating name="half-rating-read" defaultValue={rating.rate} precision={0.5} readOnly />
     </Box>
   );
 }

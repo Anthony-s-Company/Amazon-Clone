@@ -4,7 +4,7 @@ import './Product.css'
 import StarsRating from '../StarsRating'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function Product({id, title, category, price, image}) {
+export default function Product({id, title, category, price, image, rating, description}) {
   const [hasPrime] = useState(Math.random() < 0.5)
   // const addToBasket = () => {
   //   dispatch({
@@ -31,8 +31,9 @@ export default function Product({id, title, category, price, image}) {
                   <strong>{price}</strong>
               </p>
               <div className='product__rating'>
-                  <StarsRating />
+                  <StarsRating rating={rating}/>
               </div>
+              <span className="descrip_product">{description}</span>
           </div>
           {hasPrime && (
               <div>
