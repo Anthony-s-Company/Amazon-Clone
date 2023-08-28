@@ -19,6 +19,7 @@
     "@mui/styled-engine": "^5.14.6",
     "@mui/styled-engine-sc": "^5.14.6",
     "bootstrap": "^5.3.1",
+    "generate-password": "^1.7.0",
     "mdb-react-ui-kit": "^6.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",

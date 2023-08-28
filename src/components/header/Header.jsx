@@ -20,10 +20,7 @@ export default function Navbar() {
   return (
     <>
     <div className="header">
-
         <img className="header__logo" src='' alt="" />
-
-
       <div className="header__search">
         <input
           className="header__searchInput"
@@ -32,18 +29,28 @@ export default function Navbar() {
         />
         <SearchIcon className="header__searchIcon" />
       </div>
-
       <div className="header__nav">
+          {/* <Link to={!user && "/login"}>
+            <div onClick={handleAuth} className="header__option">
+              <span className="header__optionLineOne">
+                Hello {user ? user.email : "Guest"}
+              </span>
+              <span className="header__optionLineTwo">
+                {user ? "Sign Out" : "Sign In"}
+              </span>
+            </div>
+          </Link> */}
 
-          <div className="header__option">
-            <span className="header__optionLineOne">
-              Hello jakaboy
-            </span>
-            <span className="header__optionLineTwo">
-
-            </span>
-          </div>
-
+          <Link to={"/login"}>
+            <div className="header__option">
+              <span className="header__optionLineOne">
+                Hello
+              </span>
+              <span className="header__optionLineTwo">
+                login
+              </span>
+            </div>
+          </Link>
 
           <Link to="/orders">
             <div className="header__option">
@@ -52,11 +59,10 @@ export default function Navbar() {
             </div>
           </Link>
 
-
           <div className="header__optionBasket">
             <ShoppingCartIcon />
             <span className="header__optionLineTwo header__basketCount">
-
+              2
             </span>
           </div>
 
