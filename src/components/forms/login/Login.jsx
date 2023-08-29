@@ -42,8 +42,8 @@ function Login() {
           <h3 className="Auth-form-title">Sign In</h3>
           <div className="text-center">
             Not registered yet?{" "}
-            <Link>
-              <span className="link-primary" onClick={goToSignup()}>
+            <Link to={'/signup/'}>
+              <span className="link-primary">
                 Sign Up
               </span>
             </Link>

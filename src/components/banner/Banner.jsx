@@ -13,18 +13,11 @@ function Banner() {
           </Carousel.Item>
 
           <Carousel.Item>
-            <img className="d-block w-100" src="https://links.papareact.com/gi1" alt="Second slide" />
-          </Carousel.Item>
-
-          <Carousel.Item>
             <img className="d-block w-100" src="https://links.papareact.com/6ff" alt="Third slide" />
           </Carousel.Item>
-          <Carousel.Item>
-            <img className="d-block w-100" src="https://links.papareact.com/7ma" alt="forth slide" />
-          </Carousel.Item>
 
           <Carousel.Item>
-            <img className="d-block w-100" src="https://links.papareact.com/gi1" alt="fivth slide" />
+            <img className="d-block w-100" src="https://links.papareact.com/7ma" alt="forth slide" />
           </Carousel.Item>
         </Carousel>
       </div>
