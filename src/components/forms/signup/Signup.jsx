@@ -23,13 +23,13 @@ export default function Signup() {
     event.preventDefault();
     try {
       setLoading(true)
-      await signupUser(email, username, password)
 
+      await signupUser(email, username, password)
       setLoading(false)
       setSuccess({ is: true, title: 'Great!, you are registered', text: 'We are redirecting you to the login page'});
       redirectTimer = setTimeout(() => {
         navigate("/login/");
-    }, 3000);
+      }, 3000);
 
     } catch (err) {
       setLoading(false)
@@ -48,6 +48,10 @@ export default function Signup() {
     <div className="back_screen">    
       <div className="Auth-form-container">
         {
+          loading && (
+          <Spinner />)
+        }
+        {
           error.is && (
             <Message
               error
@@ -59,17 +63,9 @@ export default function Signup() {
         {
           success.is && (
             <BasicModal isVisible='{success.is}' title={success.title} message={success.text}/>
-            // <Message
-            //   success
-            //   header={success.title}
-            //   content={success.text}
-            // />
           )
         }
-        {
-          loading && (
-          <Spinner />)
-        }
+        
         <form onSubmit={handleSubmit} method="post" className="Auth-form">
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Create account</h3>
