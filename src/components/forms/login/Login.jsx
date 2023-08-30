@@ -1,43 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../../services/User";
+import Spinner from '../../Spinner'
+import BasicModal from '../../BasicModal'
 import "./Login.css";
+import {setToken} from '../../../utils/token';
 
 
 
 function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({ is: false, title: '', text: '' });
 
-  function goToSignup(){
-    navigate('/signup') 
+  let redirectTimer;
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setLoading(true)
+    try {
+      const response = await login(username, password)
+      setToken(response.token)
+      setLoading(false)
+
+      redirectTimer = setTimeout(() => {
+        navigate("/");
+      }, 3000);
+
+    } catch (err) {
+      setLoading(false)
+      setError({ is: true, title: 'Registration error', text: err.message });
+      console.log(err);
+    }
   }
 
-//   const signIn = (e) => {
-//     e.preventDefault();
-//     signInWithEmailAndPassword(auth,email, password)
-//     .then(auth => {
-//         navigate('/') 
-//     })
-//     .catch(error => alert(error.message))
+  useEffect(() => {
+    return () => {
+        clearTimeout(redirectTimer);
+    }
+  }, []);
 
-// }
-
-// const register = e => {
-//     e.preventDefault();
-//      createUserWithEmailAndPassword(auth, email, password)
-//     .then((auth) =>{
-//         // sucessfully created a new user with email and password
-//         if (auth){
-//           navigate('/')  
-//         }
-//     })
-//     .catch(error => alert(error.message))
-// }
   return (
     <div className="back_screen">
       <div className="Auth-form-container">
-      <form className="Auth-form">
+      {
+        loading && (
+        <Spinner />)
+      }
+      {
+        error.is && (
+          <BasicModal isVisible={error.is} title={error.title} message={error.text}/>
+        )
+      }
+      <form onSubmit={handleSubmit} method="POST" className="Auth-form">
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign In</h3>
           <div className="text-center">
@@ -49,11 +66,12 @@ function Login() {
             </Link>
           </div>
           <div className="form-group mt-3">
-            <label>Email address</label>
+            <label>Username</label>
             <input
-              type="email"
+              type="text"
               className="form-control mt-1"
-              placeholder="Enter email"
+              placeholder="Enter Username"
+              onChange={(e) => {setUsername(e.target.value);}}
             />
           </div>
           <div className="form-group mt-3">
@@ -62,6 +80,7 @@ function Login() {
               type="password"
               className="form-control mt-1"
               placeholder="Enter password"
+              onChange={(e) => {setPassword(e.target.value);}}
             />
           </div>
           <div className="d-grid gap-2 mt-3">

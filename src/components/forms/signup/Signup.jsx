@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate  } from "react-router-dom";
 import "./Signup.css";
 import { signupUser } from "../../../services/User";
-import { Message } from 'semantic-ui-react';
 import Spinner from '../../Spinner'
 import BasicModal from '../../BasicModal'
 
@@ -34,6 +33,9 @@ export default function Signup() {
     } catch (err) {
       setLoading(false)
       setError({ is: true, title: 'Registration error', text: err.message });
+      redirectTimer = setTimeout(() => {
+        navigate("/signup/");
+      }, 3000);
       console.log(err);
     }
   }
@@ -53,16 +55,12 @@ export default function Signup() {
         }
         {
           error.is && (
-            <Message
-              error
-              header={error.title}
-              content={error.text}
-            />
+            <BasicModal isVisible={error.is} title={error.title} message={error.text}/>
           )
         }
         {
           success.is && (
-            <BasicModal isVisible='{success.is}' title={success.title} message={success.text}/>
+            <BasicModal isVisible={success.is} title={success.title} message={success.text}/>
           )
         }
         
