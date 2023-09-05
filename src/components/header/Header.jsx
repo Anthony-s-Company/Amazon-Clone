@@ -1,21 +1,32 @@
-import {
-  MDBNavbar,
-  MDBContainer,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBNavbarNav,
-  MDBNavbarBrand,
-  MDBInputGroup,
-  MDBBtn,
-  MDBIcon
-} from 'mdb-react-ui-kit';
-
+import { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./Header.css";
 import { Link } from "react-router-dom";
+import {getStorageValues, cleanStorageValues} from '../../utils/localStorage';
+import {getToken} from '../../utils/token'
+
 
 export default function Navbar() {
+
+  const [logged, setLogged] = useState(false);
+  const [username, setUsername] = useState("")
+
+  const handleAuth = () => {
+    if (logged) {
+      cleanStorageValues('token')
+      cleanStorageValues('username')
+      setUsername("")
+      setLogged(false)
+    }
+  };
+
+  useEffect(() => {
+    if(getToken()){
+      setUsername(getStorageValues("username"))
+      setLogged(true)
+    }
+  }, []);
 
   return (
     <>
@@ -30,24 +41,13 @@ export default function Navbar() {
         <SearchIcon className="header__searchIcon" />
       </div>
       <div className="header__nav">
-          {/* <Link to={!user && "/login"}>
+          <Link to={!logged && "/login"}>
             <div onClick={handleAuth} className="header__option">
               <span className="header__optionLineOne">
-                Hello {user ? user.email : "Guest"}
+                Hello, {logged ? username : "Guest"}
               </span>
               <span className="header__optionLineTwo">
-                {user ? "Sign Out" : "Sign In"}
-              </span>
-            </div>
-          </Link> */}
-
-          <Link to={"/login"}>
-            <div className="header__option">
-              <span className="header__optionLineOne">
-                Hello
-              </span>
-              <span className="header__optionLineTwo">
-                login
+                {logged ? "Sign Out" : "Sign In"}
               </span>
             </div>
           </Link>

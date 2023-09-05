@@ -4,19 +4,13 @@ import "./Home.css";
 import Product from '../product/product';
 import Banner from '../banner/Banner';
 
-import { fetchAllProducts, fetchAllCategories } from '../../services/Products';
+import { fetchAllProducts } from '../../services/Products';
 
 export default function Home() {
 
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-
   const [errorProducts, setErroProducts] = useState(false);
-  const [errorCategories, setErroCategories] = useState(false);
-
   const [loadedProduct, setLoadedProduct] = useState(false);
-  const [loadedCategories, setLoadedCategories] = useState(false);
-  
   
   useEffect(() => {
     async function getProducts() {
@@ -30,19 +24,7 @@ export default function Home() {
       }
     }
 
-    async function getCategories() {
-      try {
-        const response = await fetchAllCategories()
-        setCategories(response)
-        setLoadedCategories(true)
-      } catch (error) {
-        setErroCategories(error)
-        setLoadedCategories(false)
-      }
-    }
-
     getProducts();
-    getCategories();
 
   }, []);
 

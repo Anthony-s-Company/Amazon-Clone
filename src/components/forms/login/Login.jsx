@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../../services/User";
 import Spinner from '../../Spinner'
 import BasicModal from '../../BasicModal'
 import "./Login.css";
 import {setToken} from '../../../utils/token';
-
-
+import {setStorageValues} from '../../../utils/localStorage';
 
 function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("mor_2314");
+  const [password, setPassword] = useState("83r5^_");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ is: false, title: '', text: '' });
 
@@ -22,6 +21,8 @@ function Login() {
     setLoading(true)
     try {
       const response = await login(username, password)
+      console.log(JSON.stringify(username))
+      setStorageValues("username", username)
       setToken(response.token)
       setLoading(false)
 
