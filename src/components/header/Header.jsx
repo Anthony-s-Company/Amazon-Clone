@@ -2,23 +2,32 @@ import { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./Header.css";
-import { Link } from "react-router-dom";
+import Spinner from '../Spinner'
+import { Link, useNavigate } from "react-router-dom";
 import {getStorageValues, cleanStorageValues} from '../../utils/localStorage';
 import {getToken} from '../../utils/token'
 
+let redirectTimer;
 
 export default function Navbar() {
 
+  const navigate = useNavigate();
   const [logged, setLogged] = useState(false);
   const [username, setUsername] = useState("")
+  const [loading, setLoading] = useState(false);
 
   const handleAuth = () => {
+    setLoading(true)
     if (logged) {
       cleanStorageValues('token')
       cleanStorageValues('username')
       setUsername("")
       setLogged(false)
     }
+    redirectTimer = setTimeout(() => {
+      setLoading(false)
+      navigate("/login/");
+    }, 1000);
   };
 
   useEffect(() => {
@@ -26,10 +35,17 @@ export default function Navbar() {
       setUsername(getStorageValues("username"))
       setLogged(true)
     }
+    return () => {
+      clearTimeout(redirectTimer);
+    }
   }, []);
 
   return (
     <>
+    {
+      loading && (
+      <Spinner />)
+    }
     <div className="header">
         <img className="header__logo" src='' alt="" />
       <div className="header__search">

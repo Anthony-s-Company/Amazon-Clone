@@ -21,14 +21,13 @@ function Login() {
     setLoading(true)
     try {
       const response = await login(username, password)
-      console.log(JSON.stringify(username))
       setStorageValues("username", username)
       setToken(response.token)
-      setLoading(false)
-
+      
       redirectTimer = setTimeout(() => {
+        setLoading(false)
         navigate("/");
-      }, 3000);
+      }, 2000);
 
     } catch (err) {
       setLoading(false)

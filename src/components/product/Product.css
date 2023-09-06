@@ -41,15 +41,16 @@
 .product__rating {
   display: flex;
 }
+
 .product > button {
-  background: #f0c14b;
-  border: 1px solid;
-  padding: 0 10px;
-  border-color: #a88734 #9c7e31 #846a29;
-  color: #111;
-  border-radius: 3px;
-  margin: 5px auto;
-  text-align: center;
+  width: fit-content;
+  margin: 0 .5em .5em .5em;
+  background: rgb(255,215,18);
+  border: none;
+  border-radius: 1em;
+  padding: .35em 4em;
+  margin-inline: auto;
+  box-shadow: 0 .1em .25em rgb(235, 235, 235);
 }
 
 .prime {
@@ -78,12 +79,3 @@
   font-size: 0.75rem;
   line-height: 1rem; 
 }
-
-
-
-
-
-
-
-
-
