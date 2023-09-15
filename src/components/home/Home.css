@@ -15,13 +15,18 @@
   margin-bottom: 0!important;
 }
 
+.home__row__search {
+  margin: 1em;
+  padding: 1em;
+  margin-bottom: 0!important;
+}
 
 @media screen and (max-width: 950px) {
 
 /* .row__container {
   margin-top:-54px ;
-}
- */
+} */
+
 }
 @media screen and (max-width: 650px) {
 .home__row {

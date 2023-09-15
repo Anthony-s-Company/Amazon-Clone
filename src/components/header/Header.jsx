@@ -1,15 +1,17 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./Header.css";
 import Spinner from '../Spinner'
 import { Link, useNavigate } from "react-router-dom";
-import {getStorageValues, cleanStorageValues} from '../../utils/localStorage';
-import {getToken} from '../../utils/token'
+import { getStorageValues, cleanStorageValues } from '../../utils/localStorage';
+import { getToken } from '../../utils/token'
+import Search from './Search';
 
 let redirectTimer;
 
-export default function Navbar() {
+export default function Header({ setSearchResults, setSearchLoadedProduct }) {
 
   const navigate = useNavigate();
   const [logged, setLogged] = useState(false);
@@ -31,7 +33,7 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    if(getToken()){
+    if (getToken()) {
       setUsername(getStorageValues("username"))
       setLogged(true)
     }
@@ -42,21 +44,20 @@ export default function Navbar() {
 
   return (
     <>
-    {
-      loading && (
-      <Spinner />)
-    }
-    <div className="header">
+      {
+        loading && (
+          <Spinner />)
+      }
+      <div className="header">
         <img className="header__logo" src='' alt="" />
-      <div className="header__search">
-        <input
-          className="header__searchInput"
-          type="search"
-          placeholder="Search Amazon..."
-        />
+
+        <div className="header__search">
+          <Search setSearchResults={setSearchResults} setSearchLoadedProduct={setSearchLoadedProduct} />
+        </div>
+
         <SearchIcon className="header__searchIcon" />
-      </div>
-      <div className="header__nav">
+
+        <div className="header__nav">
           <Link to={!logged && "/login"}>
             <div onClick={handleAuth} className="header__option">
               <span className="header__optionLineOne">
@@ -82,8 +83,8 @@ export default function Navbar() {
             </span>
           </div>
 
+        </div>
       </div>
-    </div>
     </>
   );
 }
