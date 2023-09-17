@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getStorageValues, cleanStorageValues } from '../../utils/localStorage';
 import { getToken } from '../../utils/token'
 import Search from './Search';
+import Filter from './Filter';
 
 let redirectTimer;
 
@@ -50,6 +51,10 @@ export default function Header({ setSearchResults, setSearchLoadedProduct }) {
       }
       <div className="header">
         <img className="header__logo" src='' alt="" />
+
+        <div className="header__filter">
+          <Filter className="filter" size="sm" />
+        </div>
 
         <div className="header__search">
           <Search setSearchResults={setSearchResults} setSearchLoadedProduct={setSearchLoadedProduct} />
