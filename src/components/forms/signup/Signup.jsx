@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import { signupUser } from "../../../services/User";
 import Spinner from '../../Spinner'
@@ -25,7 +25,7 @@ export default function Signup() {
 
       await signupUser(email, username, password)
       setLoading(false)
-      setSuccess({ is: true, title: 'Great!, you are registered', text: 'We are redirecting you to the login page'});
+      setSuccess({ is: true, title: 'Great!, you are registered', text: 'We are redirecting you to the login page' });
       redirectTimer = setTimeout(() => {
         navigate("/login/");
       }, 3000);
@@ -42,28 +42,28 @@ export default function Signup() {
 
   useEffect(() => {
     return () => {
-        clearTimeout(redirectTimer);
+      clearTimeout(redirectTimer);
     }
   }, []);
 
   return (
-    <div className="back_screen">    
+    <div className="back_screen">
       <div className="Auth-form-container">
         {
           loading && (
-          <Spinner />)
+            <Spinner />)
         }
         {
           error.is && (
-            <BasicModal isVisible={error.is} title={error.title} message={error.text}/>
+            <BasicModal isVisible={error.is} title={error.title} message={error.text} />
           )
         }
         {
           success.is && (
-            <BasicModal isVisible={success.is} title={success.title} message={success.text}/>
+            <BasicModal isVisible={success.is} title={success.title} message={success.text} />
           )
         }
-        
+
         <form onSubmit={handleSubmit} method="post" className="Auth-form">
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Create account</h3>
@@ -83,7 +83,7 @@ export default function Signup() {
                 minLength="4"
                 className="form-control mt-1"
                 placeholder="e.g Jane Doe"
-                onChange={(e) => {setUsername(e.target.value);}}
+                onChange={(e) => { setUsername(e.target.value); }}
               />
             </div>
             <div className="form-group mt-3">
@@ -93,7 +93,7 @@ export default function Signup() {
                 type="email"
                 className="form-control mt-1"
                 placeholder="Email Address"
-                onChange={(e) => {setEmail(e.target.value);}}
+                onChange={(e) => { setEmail(e.target.value); }}
               />
             </div>
             <div className="form-group mt-3">
@@ -103,7 +103,7 @@ export default function Signup() {
                 type="password"
                 className="form-control mt-1"
                 placeholder="Password"
-                onChange={(e) => {setPassword(e.target.value);}}
+                onChange={(e) => { setPassword(e.target.value); }}
               />
             </div>
             <div className="d-grid gap-2 mt-3">
