@@ -11,7 +11,7 @@ import Search from './Search';
 
 let redirectTimer;
 
-export default function Header({ setSearchResults, setSearchLoadedProduct }) {
+export default function Header({ setSearchResults, setSearchLoadedProduct, itemsOnCar }) {
 
   const navigate = useNavigate();
   const [logged, setLogged] = useState(false);
@@ -79,7 +79,7 @@ export default function Header({ setSearchResults, setSearchLoadedProduct }) {
           <div className="header__optionBasket">
             <ShoppingCartIcon />
             <span className="header__optionLineTwo header__basketCount">
-              2
+              {itemsOnCar}
             </span>
           </div>
 

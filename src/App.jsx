@@ -11,6 +11,7 @@ export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   // const [searchErrorProducts, setsearchErroProducts] = useState(false);
   const [searchLoadedProduct, setSearchLoadedProduct] = useState(false);
+  const [itemsOnCar, setItemsOnCar] = useState(0);
   return (
     <>
       <Routes>
@@ -34,7 +35,16 @@ export default function App() {
 
         <Route
           path="/details/:id"
-          element={[<Header key="1" />, <Details key="2" />]}
+          element={[
+            <Header
+              setItemsOnCar={setItemsOnCar}
+              itemsOnCar={itemsOnCar}
+              key="1"
+            />,
+            <Details
+              setItemsOnCar={setItemsOnCar}
+              itemsOnCar={itemsOnCar}
+              key="2" />]}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
