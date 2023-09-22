@@ -34,7 +34,18 @@ export default function Details({ setItemsOnCar, username }) {
     let items = 0
 
     getStorageValues(username) ? listCart = getStorageValues(username) : listCart = []
-    updatedValue = { "user": username, "item": product.title, "qty": countCart, "unitPrice": product.price };
+    updatedValue = {
+      "user": username,
+      "title": product.title,
+      "qty": countCart,
+      "price": product.price,
+      'image': product.image,
+      'description': product.description,
+      'id': product.id,
+      'category': product.category,
+      'rating': product.rating
+    }
+
     listCart = [...listCart, updatedValue]
     setStorageValues(username, listCart)
 

@@ -5,6 +5,7 @@ import Header from "./components/header/Header";
 import Details from "./components/product/Details";
 import Login from "./components/forms/login/Login";
 import Signup from "./components/forms/signup/Signup";
+import ShoppingCar from "./components/car/ShoppingCar";
 import { Routes, Route } from "react-router-dom";
 import { getStorageValues } from './utils/localStorage';
 
@@ -65,6 +66,26 @@ export default function App() {
             />
           ]}
         />
+        <Route path="/shoopingCar" element={[
+          <Header
+            searchResults={searchResults}
+            setSearchResults={setSearchResults}
+            setSearchLoadedProduct={setSearchLoadedProduct}
+            setItemsOnCar={setItemsOnCar}
+            itemsOnCar={itemsOnCar}
+            username={username}
+            key="1"
+          />,
+          <ShoppingCar
+            searchResults={searchResults}
+            searchLoadedProduct={searchLoadedProduct}
+            setItemsOnCar={setItemsOnCar}
+            itemsOnCar={itemsOnCar}
+            username={username}
+            key="2"
+          />
+        ]} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>

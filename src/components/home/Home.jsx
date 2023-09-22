@@ -33,9 +33,11 @@ export default function Home({ searchResults, searchLoadedProduct, setItemsOnCar
 
     getStorageValues(username) ? setListItemsCar(getStorageValues(username)) : setListItemsCar([])
     let items = 0
-    for (const item of listItemsCar) {
-      items += item['qty']
+    if (listItemsCar) {
+      for (const item of listItemsCar) {
+        items += item['qty']
 
+      }
     }
     setItemsOnCar(items)
   }, []);

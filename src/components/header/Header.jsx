@@ -18,6 +18,10 @@ export default function Header({ setSearchResults, setSearchLoadedProduct, items
   const [username, setUsername] = useState("")
   const [loading, setLoading] = useState(false);
 
+  function handleShoopingCar() {
+    console.log("cosa")
+  }
+
   const handleAuth = () => {
     setLoading(true)
     if (logged) {
@@ -77,7 +81,14 @@ export default function Header({ setSearchResults, setSearchLoadedProduct, items
           </Link>
 
           <div className="header__optionBasket">
-            <ShoppingCartIcon />
+            <Link to="/shoopingCar">
+              <div className="header__option">
+                <ShoppingCartIcon
+                  onClick={handleShoopingCar}
+                />
+              </div>
+            </Link>
+
             <span className="header__optionLineTwo header__basketCount">
               {itemsOnCar}
             </span>

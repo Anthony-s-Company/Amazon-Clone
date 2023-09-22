@@ -15,7 +15,17 @@ export default function Product({ id, title, category, price, image, rating, des
     let items = 0
 
     getStorageValues(username) ? listCart = getStorageValues(username) : listCart = []
-    updatedValue = { "user": username, "item": title, "qty": 1, "unitPrice": price };
+    updatedValue = {
+      "user": username,
+      "title": title, 
+      "qty": 1,
+      "price": price,
+      'image': image,
+      'description': description,
+      'id': id,
+      'category': category,
+      'rating':rating
+    };
     listCart = [...listCart, updatedValue]
     setStorageValues(username, listCart)
 
