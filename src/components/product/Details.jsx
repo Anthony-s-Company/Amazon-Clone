@@ -12,19 +12,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import './Details.css'
 
-export default function Details({ setItemsOnCar, itemsOnCar }) {
+export default function Details({ setItemsOnCar, username }) {
 
   const { id } = useParams()
   const [product, setProduct] = useState();
   const [countCart, setCountCart] = useState(0);
   const [loadedProduct, setLoadedProduct] = useState(false);
   const [error, setError] = useState({ is: false, title: '', text: '' });
-  const [username, setUsername] = useState(getStorageValues("username"));
+  const [listItemsCar, setListItemsCar] = useState(getStorageValues(username));
 
   function countCartDown() {
     if (countCart > 0) {
       setCountCart((countCart) => countCart - 1)
-
     }
   }
 
@@ -32,16 +31,22 @@ export default function Details({ setItemsOnCar, itemsOnCar }) {
 
     let listCart = []
     let updatedValue = {};
+    let items = 0
 
     getStorageValues(username) ? listCart = getStorageValues(username) : listCart = []
     updatedValue = { "user": username, "item": product.title, "qty": countCart, "unitPrice": product.price };
     listCart = [...listCart, updatedValue]
     setStorageValues(username, listCart)
-    setItemsOnCar(listCart.length)
+
+    for (const item of listCart) {
+      items += item['qty']
+
+    }
+    setItemsOnCar(items)
 
     toast.success('Items added successfully ', {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -65,7 +70,13 @@ export default function Details({ setItemsOnCar, itemsOnCar }) {
       }
     }
     getProduct();
-    getStorageValues(username) ? setItemsOnCar(getStorageValues(username).length) : setItemsOnCar(0)
+    getStorageValues(username) ? setListItemsCar(getStorageValues(username)) : setListItemsCar([])
+    let items = 0
+    for (const item of listItemsCar) {
+      items += item['qty']
+
+    }
+    setItemsOnCar(items)
   }, []);
 
   return (

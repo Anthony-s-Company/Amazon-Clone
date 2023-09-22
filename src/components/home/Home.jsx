@@ -6,14 +6,16 @@ import Product from '../product/product';
 import Banner from '../banner/Banner';
 import SearchHome from './SearchHome'
 import Spinner from '../Spinner'
+import { getStorageValues } from '../../utils/localStorage';
 
 import { fetchAllProducts } from '../../services/Products';
 
-export default function Home({ searchResults, searchLoadedProduct }) {
+export default function Home({ searchResults, searchLoadedProduct, setItemsOnCar, username }) {
 
   const [products, setProducts] = useState([]);
   const [errorProducts, setErroProducts] = useState(false);
   const [loadedProduct, setLoadedProduct] = useState(false);
+  const [listItemsCar, setListItemsCar] = useState(getStorageValues(username));
 
   useEffect(() => {
     async function getProducts() {
@@ -29,6 +31,13 @@ export default function Home({ searchResults, searchLoadedProduct }) {
 
     getProducts();
 
+    getStorageValues(username) ? setListItemsCar(getStorageValues(username)) : setListItemsCar([])
+    let items = 0
+    for (const item of listItemsCar) {
+      items += item['qty']
+
+    }
+    setItemsOnCar(items)
   }, []);
 
   return (
@@ -45,7 +54,6 @@ export default function Home({ searchResults, searchLoadedProduct }) {
             <Banner />
             <div className="row__container">
               <div className="home__row">
-
                 {
                   loadedProduct && !errorProducts && (
                     products.slice(0, 2).map((product) =>
@@ -58,6 +66,8 @@ export default function Home({ searchResults, searchLoadedProduct }) {
                         category={product.category}
                         rating={product.rating}
                         description={product.description}
+                        setItemsOnCar={setItemsOnCar}
+                        username={username}
                       />)
                   )
                 }
@@ -76,6 +86,8 @@ export default function Home({ searchResults, searchLoadedProduct }) {
                         category={product.category}
                         rating={product.rating}
                         description={product.description}
+                        setItemsOnCar={setItemsOnCar}
+                        username={username}
                       />)
                   )
                 }
@@ -94,6 +106,8 @@ export default function Home({ searchResults, searchLoadedProduct }) {
                         category={product.category}
                         rating={product.rating}
                         description={product.description}
+                        setItemsOnCar={setItemsOnCar}
+                        username={username}
                       />)
                   )
                 }
@@ -112,6 +126,8 @@ export default function Home({ searchResults, searchLoadedProduct }) {
                         category={product.category}
                         rating={product.rating}
                         description={product.description}
+                        setItemsOnCar={setItemsOnCar}
+                        username={username}
                       />)
                   )
                 }
