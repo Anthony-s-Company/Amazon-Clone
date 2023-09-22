@@ -29,11 +29,23 @@ export default function Details({ setItemsOnCar, username }) {
 
   function addToCar() {
 
-    let listCart = []
+    let dictCart = {}
     let updatedValue = {};
     let items = 0
+    let dictTmp = {}
 
-    getStorageValues(username) ? listCart = getStorageValues(username) : listCart = []
+    // for (const item of listItemsCar) {
+
+    //   if (item.id in carDict) {
+    //     tmp = carDict[item.id]
+    //     tmp.qty += item.qty
+    //     carDict[item.id] = tmp
+    //   } else {
+    //     carDict[item.id] = item
+    //   }
+    // }
+
+    getStorageValues(username) ? dictCart = getStorageValues(username) : dictCart = {}
     updatedValue = {
       "user": username,
       "title": product.title,
@@ -46,13 +58,20 @@ export default function Details({ setItemsOnCar, username }) {
       'rating': product.rating
     }
 
-    listCart = [...listCart, updatedValue]
-    setStorageValues(username, listCart)
-
-    for (const item of listCart) {
-      items += item['qty']
-
+    if (updatedValue.id in dictCart) {
+      dictTmp = dictCart[updatedValue.id]
+      dictTmp.qty += updatedValue.qty
+      dictCart[dictTmp]
+    } else {
+      dictCart[updatedValue.id] = updatedValue
     }
+
+    setStorageValues(username, dictCart)
+
+    for (let k in dictCart) {
+      items += dictCart[k].qty
+    }
+
     setItemsOnCar(items)
 
     toast.success('Items added successfully ', {
@@ -81,13 +100,13 @@ export default function Details({ setItemsOnCar, username }) {
       }
     }
     getProduct();
-    getStorageValues(username) ? setListItemsCar(getStorageValues(username)) : setListItemsCar([])
-    let items = 0
-    for (const item of listItemsCar) {
-      items += item['qty']
+    // getStorageValues(username) ? setListItemsCar(getStorageValues(username)) : setListItemsCar([])
+    // let items = 0
+    // for (const item of listItemsCar) {
+    //   items += item['qty']
 
-    }
-    setItemsOnCar(items)
+    // }
+    // setItemsOnCar(items)
   }, []);
 
   return (
@@ -118,7 +137,7 @@ export default function Details({ setItemsOnCar, username }) {
                 <button type="button" onClick={addToCar} id="cart_btn" className="btn btn-primary d-inline ms-4">Add to Cart</button>
                 <ToastContainer
                   position="top-right"
-                  autoClose={5000}
+                  autoClose={500}
                   hideProgressBar={false}
                   newestOnTop={false}
                   closeOnClick

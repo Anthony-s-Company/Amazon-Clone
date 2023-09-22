@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
-import { getStorageValues } from '../../utils/localStorage';
+import { getStorageValues, setStorageValues } from '../../utils/localStorage';
 import './ShoppingCar.css'
 import Button from '@mui/material/Button';
 import shopImg from '../../assets/shop.png'
@@ -31,6 +31,7 @@ function ShoppingCar({ username }) {
     }
     setListItemsCar([])
     setListItemsCar(newList)
+    setStorageValues(username, listItemsCar)
   }, []);
 
   function displayCartItem(item) {
@@ -50,9 +51,7 @@ function ShoppingCar({ username }) {
             <div>
               <Button
                 className="btn_shopping"
-                onClick={() => {
-                  console.log("eliminando")
-                }}
+                onClick={() => { removeItem(item) }}
               >
                 Remove from Cart
               </Button>
@@ -63,6 +62,21 @@ function ShoppingCar({ username }) {
         <hr />
       </div>
     );
+  }
+
+  function removeItem(item) {
+
+    const newArr = listItemsCar.filter(function (id) {
+      return id !== item.id;
+    });
+
+    if (item.qty > 1) {
+      item.qty -= 1
+      newArr.push(item)
+      setListItemsCar(newArr)
+    }
+
+    setStorageValues(username, listItemsCar)
   }
 
   return (

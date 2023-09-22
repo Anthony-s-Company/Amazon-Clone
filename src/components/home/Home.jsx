@@ -15,7 +15,6 @@ export default function Home({ searchResults, searchLoadedProduct, setItemsOnCar
   const [products, setProducts] = useState([]);
   const [errorProducts, setErroProducts] = useState(false);
   const [loadedProduct, setLoadedProduct] = useState(false);
-  const [listItemsCar, setListItemsCar] = useState(getStorageValues(username));
 
   useEffect(() => {
     async function getProducts() {
@@ -31,12 +30,12 @@ export default function Home({ searchResults, searchLoadedProduct, setItemsOnCar
 
     getProducts();
 
-    getStorageValues(username) ? setListItemsCar(getStorageValues(username)) : setListItemsCar([])
+    let dictCart = {}
+    getStorageValues(username) ? dictCart = getStorageValues(username) : dictCart = {}
     let items = 0
-    if (listItemsCar) {
-      for (const item of listItemsCar) {
-        items += item['qty']
-
+    if (dictCart) {
+      for (let k in dictCart) {
+        items += dictCart[k].qty
       }
     }
     setItemsOnCar(items)

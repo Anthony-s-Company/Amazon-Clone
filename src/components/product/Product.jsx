@@ -5,39 +5,71 @@ import './Product.css'
 import StarsRating from '../StarsRating'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getStorageValues, setStorageValues } from '../../utils/localStorage';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Product({ id, title, category, price, image, rating, description, setItemsOnCar, username }) {
   const [hasPrime] = useState(Math.random() < 0.5)
 
   const handleAddClick = () => {
-    let listCart = []
+    let dictCart = {}
     let updatedValue = {};
     let items = 0
+    let dictTmp = {}
 
-    getStorageValues(username) ? listCart = getStorageValues(username) : listCart = []
+    getStorageValues(username) ? dictCart = getStorageValues(username) : dictCart = {}
     updatedValue = {
       "user": username,
-      "title": title, 
+      "title": title,
       "qty": 1,
       "price": price,
       'image': image,
       'description': description,
       'id': id,
       'category': category,
-      'rating':rating
+      'rating': rating
     };
-    listCart = [...listCart, updatedValue]
-    setStorageValues(username, listCart)
 
-    for (const item of listCart) {
-      items += item['qty']
-
+    if (updatedValue.id in dictCart) {
+      dictTmp = dictCart[updatedValue.id]
+      dictTmp.qty += updatedValue.qty
+      dictCart[dictTmp]
+    } else {
+      dictCart[updatedValue.id] = updatedValue
     }
+
+    setStorageValues(username, dictCart)
+
+    for (let k in dictCart) {
+      items += dictCart[k].qty
+    }
+
     setItemsOnCar(items)
+    toast.success('Items added successfully ', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className='product'>
         <p className="product_category">{category}</p>
         <img className='img_product' src={image} alt='' />
