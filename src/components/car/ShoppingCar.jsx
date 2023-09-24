@@ -7,34 +7,24 @@ import shopImg from '../../assets/shop.png'
 
 function ShoppingCar({ username }) {
 
-  const [listItemsCar, setListItemsCar] = useState(getStorageValues(username));
+  const [dictItemsCar, setDictItemsCar] = useState(getStorageValues(username));
+  const [listItems, setListItems] = useState([]);
+
+  function objToArray(obj) {
+    let newArr = []
+
+    for (const key in obj) {
+      newArr.push(obj[key])
+    }
+    return newArr;
+  }
 
   useEffect(() => {
-    let carDict = {}
-    let tmp
-
-    for (const item of listItemsCar) {
-
-      if (item.id in carDict) {
-        tmp = carDict[item.id]
-        tmp.qty += item.qty
-        carDict[item.id] = tmp
-      } else {
-        carDict[item.id] = item
-      }
-    }
-
-    let newList = []
-
-    for (let k in carDict) {
-      newList.push(carDict[k])
-    }
-    setListItemsCar([])
-    setListItemsCar(newList)
-    setStorageValues(username, listItemsCar)
+    setListItems(objToArray(dictItemsCar))
   }, []);
 
   function displayCartItem(item) {
+    // console.log(item)
     return (
       <div key={item.id}>
         <div className="cart-card flex">
@@ -66,17 +56,19 @@ function ShoppingCar({ username }) {
 
   function removeItem(item) {
 
-    const newArr = listItemsCar.filter(function (id) {
-      return id !== item.id;
-    });
+    const tmpDict = dictItemsCar
+
+    // const newArr = listItems;
 
     if (item.qty > 1) {
       item.qty -= 1
-      newArr.push(item)
-      setListItemsCar(newArr)
+      tmpDict[item.id] = item
+    } else {
+      delete tmpDict[item.id]
     }
-
-    setStorageValues(username, listItemsCar)
+    setDictItemsCar(tmpDict)
+    setListItems(objToArray(dictItemsCar))
+    setStorageValues(username, dictItemsCar)
   }
 
   return (
@@ -90,13 +82,13 @@ function ShoppingCar({ username }) {
             <Button className="btn_shopping">Buy Now</Button>
           </div>
         </div>
-        {!listItemsCar ? (
+        {!listItems ? (
           <div>
             <h2>Your basket is empty</h2>
             <h6>Start Adding Items to your basket</h6>
           </div>
         ) : (
-          listItemsCar.map(displayCartItem)
+          listItems.map(displayCartItem)
         )}
       </div>
     </>
