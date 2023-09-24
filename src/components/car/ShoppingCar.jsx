@@ -4,23 +4,17 @@ import { getStorageValues, setStorageValues } from '../../utils/localStorage';
 import './ShoppingCar.css'
 import Button from '@mui/material/Button';
 import shopImg from '../../assets/shop.png'
+import { objToArray, countItemOnCar } from '../../utils/helper'
 
-function ShoppingCar({ username }) {
+function ShoppingCar({ setItemsOnCar, username }) {
 
   const [dictItemsCar, setDictItemsCar] = useState(getStorageValues(username));
   const [listItems, setListItems] = useState([]);
 
-  function objToArray(obj) {
-    let newArr = []
-
-    for (const key in obj) {
-      newArr.push(obj[key])
-    }
-    return newArr;
-  }
-
   useEffect(() => {
     setListItems(objToArray(dictItemsCar))
+    setItemsOnCar(countItemOnCar(dictItemsCar))
+
   }, []);
 
   function displayCartItem(item) {
@@ -67,6 +61,7 @@ function ShoppingCar({ username }) {
       delete tmpDict[item.id]
     }
     setDictItemsCar(tmpDict)
+    setItemsOnCar(countItemOnCar(dictItemsCar))
     setListItems(objToArray(dictItemsCar))
     setStorageValues(username, dictItemsCar)
   }

@@ -6,9 +6,10 @@ import StarsRating from '../StarsRating'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Spinner from '../Spinner';
 import BasicModal from '../BasicModal';
-import { setStorageValues, getStorageValues } from '../../utils/localStorage';
+import { setStorageValues } from '../../utils/localStorage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { countItemOnCar, updateItemOnCar } from '../../utils/helper'
 
 import './Details.css'
 
@@ -19,7 +20,6 @@ export default function Details({ setItemsOnCar, username }) {
   const [countCart, setCountCart] = useState(0);
   const [loadedProduct, setLoadedProduct] = useState(false);
   const [error, setError] = useState({ is: false, title: '', text: '' });
-  const [listItemsCar, setListItemsCar] = useState(getStorageValues(username));
 
   function countCartDown() {
     if (countCart > 0) {
@@ -30,53 +30,17 @@ export default function Details({ setItemsOnCar, username }) {
   function addToCar() {
 
     let dictCart = {}
-    let updatedValue = {};
-    let items = 0
-    let dictTmp = {}
 
-    // for (const item of listItemsCar) {
-
-    //   if (item.id in carDict) {
-    //     tmp = carDict[item.id]
-    //     tmp.qty += item.qty
-    //     carDict[item.id] = tmp
-    //   } else {
-    //     carDict[item.id] = item
-    //   }
-    // }
-
-    getStorageValues(username) ? dictCart = getStorageValues(username) : dictCart = {}
-    updatedValue = {
-      "user": username,
-      "title": product.title,
-      "qty": countCart,
-      "price": product.price,
-      'image': product.image,
-      'description': product.description,
-      'id': product.id,
-      'category': product.category,
-      'rating': product.rating
-    }
-
-    if (updatedValue.id in dictCart) {
-      dictTmp = dictCart[updatedValue.id]
-      dictTmp.qty += updatedValue.qty
-      dictCart[dictTmp]
-    } else {
-      dictCart[updatedValue.id] = updatedValue
-    }
+    dictCart = updateItemOnCar(username, product.title, countCart,
+      product.price, product.image, product.description,
+      product.id, product.category, product.rating)
 
     setStorageValues(username, dictCart)
-
-    for (let k in dictCart) {
-      items += dictCart[k].qty
-    }
-
-    setItemsOnCar(items)
+    setItemsOnCar(countItemOnCar(dictCart))
 
     toast.success('Items added successfully ', {
       position: "top-center",
-      autoClose: 3000,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -100,13 +64,6 @@ export default function Details({ setItemsOnCar, username }) {
       }
     }
     getProduct();
-    // getStorageValues(username) ? setListItemsCar(getStorageValues(username)) : setListItemsCar([])
-    // let items = 0
-    // for (const item of listItemsCar) {
-    //   items += item['qty']
-
-    // }
-    // setItemsOnCar(items)
   }, []);
 
   return (
@@ -137,7 +94,7 @@ export default function Details({ setItemsOnCar, username }) {
                 <button type="button" onClick={addToCar} id="cart_btn" className="btn btn-primary d-inline ms-4">Add to Cart</button>
                 <ToastContainer
                   position="top-right"
-                  autoClose={500}
+                  autoClose={1500}
                   hideProgressBar={false}
                   newestOnTop={false}
                   closeOnClick
