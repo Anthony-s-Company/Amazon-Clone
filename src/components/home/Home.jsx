@@ -7,6 +7,7 @@ import Banner from '../banner/Banner';
 import SearchHome from './SearchHome'
 import Spinner from '../Spinner'
 import { getStorageValues } from '../../utils/localStorage';
+import { countItemOnCar } from '../../utils/helper';
 
 import { fetchAllProducts } from '../../services/Products';
 
@@ -32,13 +33,8 @@ export default function Home({ searchResults, searchLoadedProduct, setItemsOnCar
 
     let dictCart = {}
     getStorageValues(username) ? dictCart = getStorageValues(username) : dictCart = {}
-    let items = 0
-    if (dictCart) {
-      for (let k in dictCart) {
-        items += dictCart[k].qty
-      }
-    }
-    setItemsOnCar(items)
+    setItemsOnCar(countItemOnCar(dictCart))
+
   }, []);
 
   return (

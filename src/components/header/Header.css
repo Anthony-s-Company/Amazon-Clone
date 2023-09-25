@@ -19,8 +19,16 @@
 
 .header__filter {
   width: 100px;
+  height: 25px;
   object-fit: contain;
   border-radius: 50px;
+}
+
+.header__filterSelect {
+  border: none;
+  height: 100%;
+  width: 100%;
+  margin-left: 5px;
 }
 
 .header__search {
@@ -41,6 +49,7 @@
   font-size: 1.25rem;
   margin-left: 5px;
 }
+
 .header__searchInput:focus {
   outline: none;
 }
