@@ -64,6 +64,7 @@ Here is a working live demo [here](https://amazon-clone-martstech.vercel.app/)
 
 - React.JS
 - Material UI
+- React Bootstrap
 - Webhooks
 - Fake Store API
 
