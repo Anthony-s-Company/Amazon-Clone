@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  margin: 100px;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.bold {
+  font-weight: bolder !important;
+  font-size: 20px;
+}
+.banner {
+  position: relative;
+  top: 65px;
+}
+.fade-box {
+  position: absolute;
+  bottom: 0;
+  height: 30vh;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgb(233, 233, 233) 70%
+  );
+  width: 100vw;
+}
+.card {
+  margin: 10px;
+  z-index: 100;
+}
+.btn_shopping {
+  display: flex;
+  font-size: 15px !important;
+  font-weight: bolder !important;
+  background-color: rgb(255, 183, 0) !important;
+  margin: 10px !important;
+}
+.back_to_amazon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.price-card {
+  background-color: #131921;
+  color: white;
+  padding: 20px;
+  margin: auto;
+}
+
+.Cart {
+  padding-top: px;
+}
+
+.cart-card {
+  position: relative;
+  padding: 10px;
+  justify-content: space-evenly;
+  background-color: white;
+}
+.Cart .title {
+  font-size: 30px;
+}
+.Cart img {
+  width: 15rem;
+}
+.Cart .detail {
+  width: 50vw;
+  flex-direction: column !important;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+}
+.cart-card .link {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  float: right;
+}

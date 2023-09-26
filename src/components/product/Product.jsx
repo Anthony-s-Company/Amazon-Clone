@@ -13,7 +13,7 @@ export default function Product({ id, title, category, price, image, rating, des
 
   const handleAddClick = () => {
     let dictCart = {}
-    
+
     dictCart = updateItemOnCar(username, title, 1, price, image, description, id, category, rating)
     setStorageValues(username, dictCart)
     setItemsOnCar(countItemOnCar(dictCart))

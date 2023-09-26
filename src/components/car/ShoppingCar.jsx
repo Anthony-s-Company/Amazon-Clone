@@ -5,6 +5,10 @@ import './ShoppingCar.css'
 import Button from '@mui/material/Button';
 import shopImg from '../../assets/shop.png'
 import { objToArray, countItemOnCar, getTotalPayment } from '../../utils/helper'
+import { Link } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 function ShoppingCar({ setItemsOnCar, username }) {
 
@@ -80,7 +84,20 @@ function ShoppingCar({ setItemsOnCar, username }) {
           <div>
             <h4>Shop All Items in Your Cart</h4>
             <div>Total Price={total}</div>
-            <Button className="btn_shopping">Buy Now</Button>
+            {
+              username ?
+                (
+                  <Link to="/checkout">
+                    <Button className="btn_shopping">Buy Now</Button>
+                  </Link>
+                )
+                :
+                (
+                  <Tooltip disableFocusListener disableTouchListener title="Log to Checkout">
+                    <Button className="btn_shopping">Buy Now</Button>
+                  </Tooltip>
+                )
+            }
           </div>
         </div>
         {!listItems ? (
