@@ -82,6 +82,6 @@ Test card: 4242 4242 4242 4242 -->
 
 ## License
 
-> You can check out the full license [here]()
+> You can check out the full license [here](https://github.com/Anthony-s-Company/Amazon-Clone/blob/main/LICENSE)
 
 This project is licensed under the terms of the **MIT** license
