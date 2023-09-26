@@ -3,13 +3,15 @@
       <img width="200px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1000px-Amazon_logo.svg.png" alt="Amazon Logo" />
   </a>
   <br />
-  <h1>Amazon-clone</h1>
-  <h5>named Sky Globe</h5>
+  Amazon-clone
+  <h4 align="center">
+    Skype Globe
+  </h4>
   <br />
 </h1>
 
 <h4 align="center">
-   Amazon Clone created with Next.JS</a>.
+   Amazon Clone created with React</a>.
 </h4>
 
 <p align="center">
@@ -27,15 +29,15 @@
   <a href="#license">License</a>
 </p>
 
-![Homepage Screenshot](public/screenshots/home.png?raw=true "Homepage Screenshot")
+![Homepage](public/screenshots/Home.png?raw=true "Homepage")
 
 ---
 
-![Order Screenshot](public/screenshots/order.png?raw=true "Order Screenshot")
+![Register](public/screenshots/Register.png?raw=true "Register")
 
 ---
 
-![Stripe Screenshot](public/screenshots/stripe.png?raw=true "Stripe Screenshot")
+![ShoppingCar](public/screenshots/ShoppingCar.png?raw=true "ShoppingCar")
 
 ---
 
