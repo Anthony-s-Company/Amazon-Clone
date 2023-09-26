@@ -2,7 +2,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import "../banner/Banner.css";
-import Product from '../product/product';
+import Product from '../product/Product';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Spinner from '../Spinner'
