@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
-import { getStorageValues, setStorageValues } from '../../utils/localStorage';
+import { getStorageValues, setStorageValues, cleanStorageValues } from '../../utils/localStorage';
 import './ShoppingCar.css'
 import Button from '@mui/material/Button';
 import shopImg from '../../assets/shop.png'
@@ -29,7 +29,6 @@ function ShoppingCar({ setItemsOnCar, username }) {
   }, []);
 
   function displayCartItem(item) {
-    // console.log(item)
     return (
       <div key={item.id}>
         <div className="cart-card flex">
@@ -60,8 +59,6 @@ function ShoppingCar({ setItemsOnCar, username }) {
 
     const tmpDict = dictItemsCar
 
-    // const newArr = listItems;
-
     if (item.qty > 1) {
       item.qty -= 1
       tmpDict[item.id] = item
@@ -72,6 +69,12 @@ function ShoppingCar({ setItemsOnCar, username }) {
     setItemsOnCar(countItemOnCar(dictItemsCar))
     setListItems(objToArray(dictItemsCar))
     setStorageValues(username, dictItemsCar)
+    setTotal(getTotalPayment(dictItemsCar))
+  }
+
+  function handleBuyButton() {
+    cleanStorageValues(username)
+    setItemsOnCar(0)
   }
 
   return (
@@ -86,7 +89,7 @@ function ShoppingCar({ setItemsOnCar, username }) {
               username ?
                 (
                   <Link to="/checkout">
-                    <Button className="btn_shopping">Buy Now</Button>
+                    <Button onClick={() => { handleBuyButton() }} className="btn_shopping">Buy Now</Button>
                   </Link>
                 )
                 :
@@ -106,7 +109,15 @@ function ShoppingCar({ setItemsOnCar, username }) {
         ) : (
           listItems.map(displayCartItem)
         )}
+        <div className="lowerRightDiv">
+          <Link to="/" className="right-link">
+            <h2 className="continueShopping">
+              Continue Shopping
+            </h2>
+          </Link>
+        </div>
       </div>
+
     </>
   );
 }

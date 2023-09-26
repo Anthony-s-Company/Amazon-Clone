@@ -115,8 +115,6 @@ export default function Details({ setItemsOnCar, username }) {
 
                 <p id="product_seller mb-3">Sold by: <strong>Sky Globe</strong></p>
 
-                <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">Buy Now</button>
-
               </div>
             </div>
           </div>

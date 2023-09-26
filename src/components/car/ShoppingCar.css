@@ -70,7 +70,9 @@ h1 {
   font-size: 30px;
 }
 .Cart img {
-  width: 15rem;
+  object-fit: contain;
+  width: 180px;
+  height: 180px;
 }
 .Cart .detail {
   width: 50vw;
@@ -84,4 +86,27 @@ h1 {
   bottom: 0;
   right: 0;
   float: right;
+}
+
+.right-link {
+  color: "#007185",
+}
+
+.lowerRightDiv {
+  margin: 1rem;
+  background-color: white;
+  height: 5rem;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.continueShopping {
+  font-size: 1.3rem;
+  background: #FFD814;
+  padding: 0.3rem 3rem;
+  border-radius: 0.3rem;
+  color: black;
 }
