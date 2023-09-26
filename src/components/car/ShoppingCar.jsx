@@ -6,8 +6,6 @@ import Button from '@mui/material/Button';
 import shopImg from '../../assets/shop.png'
 import { objToArray, countItemOnCar, getTotalPayment } from '../../utils/helper'
 import { Link } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
 function ShoppingCar({ setItemsOnCar, username }) {
