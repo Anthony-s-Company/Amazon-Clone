@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
-import "../banner/banner.css";
+import "../banner/Banner.css";
 import Product from '../product/product';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
