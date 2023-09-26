@@ -43,7 +43,7 @@
 
 ## Demo
 
-Here is a working live demo [here](https://amazon-clone-martstech.vercel.app/)
+Here is a working live demo [here](https://skyglobal.netlify.app/)
 
 ---
 
