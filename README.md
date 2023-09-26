@@ -3,7 +3,8 @@
       <img width="200px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1000px-Amazon_logo.svg.png" alt="Amazon Logo" />
   </a>
   <br />
-  Amazon-clone
+  <h1>Amazon-clone</h1>
+  <h5>named Sky Globe</h5>
   <br />
 </h1>
 
