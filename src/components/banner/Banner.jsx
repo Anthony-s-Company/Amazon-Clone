@@ -1,5 +1,4 @@
-import React from "react";
-import "./banner.css";
+import "./Banner.css";
 import { Carousel } from "react-bootstrap";
 
 function Banner() {
