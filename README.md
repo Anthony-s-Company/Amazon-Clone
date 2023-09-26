@@ -15,17 +15,10 @@
 </h4>
 
 <p align="center">
-   <img src="https://img.shields.io/github/v/release/MartsTech/amazon-clone" alt="Release" />
-   <img src="https://vercelbadge.vercel.app/api/MartsTech/amazon-clone" alt="Deployment" />
-   <img src="https://img.shields.io/github/license/MartsTech/amazon-clone" alt="License" />
-</p>
-
-<p align="center">
   <a href="#demo">Demo</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#key-technologies">Key Technologies</a> •
   <a href="#setup">Setup</a> •
-  <a href="#support">Support</a> •
   <a href="#license">License</a>
 </p>
 
