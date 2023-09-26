@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
-import Product from '../product/product';
+import Product from '../product/Product';
 import Banner from '../banner/Banner';
 import SearchHome from './SearchHome'
 import Spinner from '../Spinner'
