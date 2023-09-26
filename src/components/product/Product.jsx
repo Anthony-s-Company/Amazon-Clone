@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import './Product.css'
 import StarsRating from '../StarsRating'
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getStorageValues, setStorageValues } from '../../utils/localStorage';
+import { setStorageValues } from '../../utils/localStorage';
 import { ToastContainer, toast } from 'react-toastify';
 import { countItemOnCar, updateItemOnCar } from '../../utils/helper';
 

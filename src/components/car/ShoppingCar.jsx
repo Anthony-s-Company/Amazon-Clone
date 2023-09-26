@@ -4,16 +4,25 @@ import { getStorageValues, setStorageValues } from '../../utils/localStorage';
 import './ShoppingCar.css'
 import Button from '@mui/material/Button';
 import shopImg from '../../assets/shop.png'
-import { objToArray, countItemOnCar } from '../../utils/helper'
+import { objToArray, countItemOnCar, getTotalPayment } from '../../utils/helper'
 
 function ShoppingCar({ setItemsOnCar, username }) {
 
-  const [dictItemsCar, setDictItemsCar] = useState(getStorageValues(username));
+  let user = ''
+  if (!username) {
+    user = "GuessUser";
+  } else {
+    user = username;
+  }
+
+  const [dictItemsCar, setDictItemsCar] = useState(getStorageValues(user));
   const [listItems, setListItems] = useState([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     setListItems(objToArray(dictItemsCar))
     setItemsOnCar(countItemOnCar(dictItemsCar))
+    setTotal(getTotalPayment(dictItemsCar))
 
   }, []);
 
@@ -30,16 +39,13 @@ function ShoppingCar({ setItemsOnCar, username }) {
             <div className="detail">{item.description}</div>
             {item.detail}
             <div className="bold">${item.price}</div>
-            <div className="title">Qty: {item.qty}</div>
-
-            <div>
+            <div className="title">Qty: {item.qty}
               <Button
                 className="btn_shopping"
                 onClick={() => { removeItem(item) }}
               >
                 Remove from Cart
               </Button>
-              <Button className="btn_shopping">Buy Now</Button>
             </div>
           </div>
         </div>
@@ -73,7 +79,7 @@ function ShoppingCar({ setItemsOnCar, username }) {
           <img src={shopImg} alt="" className="img" />
           <div>
             <h4>Shop All Items in Your Cart</h4>
-            <div>Total Price=152</div>
+            <div>Total Price={total}</div>
             <Button className="btn_shopping">Buy Now</Button>
           </div>
         </div>

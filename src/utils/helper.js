@@ -24,6 +24,10 @@ function updateItemOnCar(username, title, qty, price, image, description, id, ca
   let updatedValue = {};
   let dictTmp = {};
 
+  if(!username){
+    username = 'GuessUser'
+  }
+
   getStorageValues(username) ? dictCart = getStorageValues(username) : dictCart = {}
 
   updatedValue = {
@@ -49,8 +53,32 @@ function updateItemOnCar(username, title, qty, price, image, description, id, ca
   return dictCart
 }
 
+function mergeLoggedGuestCarItems(logged, guest){
+
+  for (const key in guest) {
+    if (key in logged) {
+      logged[key].qty += guest[key].qty
+    }else{
+      logged[key] = guest[key]
+    }
+  }
+
+  return logged
+}
+
+function getTotalPayment(dictCar){
+  let total = 0
+  for (const key in dictCar) {
+    total += (dictCar[key].price * dictCar[key].qty)
+      
+  }
+  return total
+}
+
 export {
   objToArray,
   countItemOnCar,
-  updateItemOnCar
+  updateItemOnCar,
+  mergeLoggedGuestCarItems,
+  getTotalPayment
 }

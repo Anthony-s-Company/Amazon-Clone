@@ -39,19 +39,22 @@ export default function Filter({ setSearchResults, setSearchLoadedProduct }) {
   function handleChange(category) {
     setSearchLoadedProduct(false)
     let result = []
+    let prod = [...products]
 
     if (category === 'priceLow') {
-      products.sort((a, b) => {
+      prod.sort((a, b) => {
         return (a.price - b.price);
       });
-      result = products
+      result = prod
+
     } else if (category === 'priceHigh') {
-      products.sort((a, b) => {
+      prod.sort((a, b) => {
         return (b.price - a.price);
       });
-      result = products
+      result = prod
+
     } else {
-      result = (products.filter((product) => {
+      result = (prod.filter((product) => {
         return (
           product.category.toLowerCase() === category
         );
@@ -59,6 +62,7 @@ export default function Filter({ setSearchResults, setSearchLoadedProduct }) {
     }
     setSearchLoadedProduct(true);
     setSearchResults(result);
+
   }
 
   return (
@@ -70,11 +74,11 @@ export default function Filter({ setSearchResults, setSearchLoadedProduct }) {
         <option>Filter By</option>
         {
           categories.map((category) =>
-            <option key={category.id} value={category}>{category}</option>
+            <option key={category} value={category}>{category}</option>
           )
         }
-        <option value="priceLow">Price - Low to High</option>
-        <option value="priceHigh">Price - High to Low</option>
+        <option key='priceLow' value="priceLow">Price - Low to High</option>
+        <option key='priceHigh' value="priceHigh">Price - High to Low</option>
       </Form.Select>
     </>
 

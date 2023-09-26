@@ -54,7 +54,9 @@ export default function Header({ setSearchResults, setSearchLoadedProduct, items
           <Spinner />)
       }
       <div className="header">
-        <img className="header__logo" src='' alt="" />
+        <Link to="/">
+          <img className="header__logo" src='src\assets\logo.png' alt="" />
+        </Link>
 
         <div className="header__option">
           <div className="header__filter">

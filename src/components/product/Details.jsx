@@ -113,7 +113,7 @@ export default function Details({ setItemsOnCar, username }) {
                 <p>{product.description}.</p>
                 <hr />
 
-                <p id="product_seller mb-3">Sold by: <strong>Orinoco</strong></p>
+                <p id="product_seller mb-3">Sold by: <strong>Sky Globe</strong></p>
 
                 <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">Buy Now</button>
 

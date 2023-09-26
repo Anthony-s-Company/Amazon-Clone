@@ -16,7 +16,6 @@ export default function App() {
   const [itemsOnCar, setItemsOnCar] = useState(0);
   const [username, setUsername] = useState(getStorageValues("username"));
 
-
   return (
     <>
       <Routes>
@@ -30,6 +29,7 @@ export default function App() {
               setItemsOnCar={setItemsOnCar}
               itemsOnCar={itemsOnCar}
               username={username}
+              setUsername={setUsername}
               key="1"
             />,
 
@@ -39,6 +39,7 @@ export default function App() {
               setItemsOnCar={setItemsOnCar}
               itemsOnCar={itemsOnCar}
               username={username}
+              setUsername={setUsername}
               key="2"
             />,
           ]}
@@ -54,6 +55,7 @@ export default function App() {
               setItemsOnCar={setItemsOnCar}
               itemsOnCar={itemsOnCar}
               username={username}
+              setUsername={setUsername}
               key="1"
             />,
             <Details
@@ -62,6 +64,7 @@ export default function App() {
               setItemsOnCar={setItemsOnCar}
               itemsOnCar={itemsOnCar}
               username={username}
+              setUsername={setUsername}
               key="2"
             />
           ]}
@@ -74,20 +77,23 @@ export default function App() {
             setItemsOnCar={setItemsOnCar}
             itemsOnCar={itemsOnCar}
             username={username}
+            setUsername={setUsername}
             key="1"
           />,
           <ShoppingCar
             searchResults={searchResults}
-            searchLoadedProduct={searchLoadedProduct}
+            setSearchResults={setSearchResults}
+            setSearchLoadedProduct={setSearchLoadedProduct}
             setItemsOnCar={setItemsOnCar}
             itemsOnCar={itemsOnCar}
             username={username}
+            setUsername={setUsername}
             key="2"
           />
         ]} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login user={username} setUser={setUsername}/>} />
+        <Route path="/signup" element={<Signup user={username} setUser={setUsername}/>} />
       </Routes>
     </>
   );

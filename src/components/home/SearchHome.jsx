@@ -8,7 +8,6 @@ import Row from 'react-bootstrap/Row';
 import Spinner from '../Spinner'
 
 export default function SearchHome({ searchResults, searchLoadedProduct }) {
-  console.log(searchLoadedProduct)
   return (
     <>
       <div className="home">

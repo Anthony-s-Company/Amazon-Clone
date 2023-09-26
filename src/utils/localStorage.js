@@ -1,6 +1,8 @@
 const setStorageValues = (key, objValues = {}) => {
   const jsonStr = JSON.stringify(objValues);
-
+  if(!key){
+    key = 'GuessUser'
+  }
   localStorage.setItem(key, jsonStr);
 };
 

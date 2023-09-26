@@ -11,7 +11,7 @@ import { countItemOnCar } from '../../utils/helper';
 
 import { fetchAllProducts } from '../../services/Products';
 
-export default function Home({ searchResults, searchLoadedProduct, setItemsOnCar, username }) {
+export default function Home({ searchResults, searchLoadedProduct, setItemsOnCar, username, setUsername }) {
 
   const [products, setProducts] = useState([]);
   const [errorProducts, setErroProducts] = useState(false);
@@ -31,8 +31,15 @@ export default function Home({ searchResults, searchLoadedProduct, setItemsOnCar
 
     getProducts();
 
+    setUsername(getStorageValues("username"))
+
     let dictCart = {}
-    getStorageValues(username) ? dictCart = getStorageValues(username) : dictCart = {}
+    if (!username) {
+      getStorageValues("GuessUser") ? dictCart = getStorageValues("GuessUser") : dictCart = {}
+    } else {
+      getStorageValues(username) ? dictCart = getStorageValues(username) : dictCart = {}
+    }
+
     setItemsOnCar(countItemOnCar(dictCart))
 
   }, []);

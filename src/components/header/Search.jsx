@@ -54,7 +54,7 @@ function Search({ setSearchResults, setSearchLoadedProduct }) {
       <input
         className="header__searchInput"
         type="search"
-        placeholder="Search Orinoco..."
+        placeholder="Search the Sky..."
         value={input}
         pattern="^\S+$"
         onChange={(e) => handleChange(e.target.value)}
